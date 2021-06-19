@@ -21,6 +21,16 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/app/*`] },
+    },
+    {
+      resolve: `gatsby-plugin-netlify-identity`,
+      options: {
+        url: "https://zealous-mayer-e9e459.netlify.com",
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

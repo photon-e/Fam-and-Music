@@ -36,6 +36,23 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const posts = result.data.allMarkdownRemark.nodes
 
+  // in your gatsby app
+const { user } = useIdentityContext()
+// in an event handler
+fetch("/.netlify/functions/auth-hello", {
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + user.token.access_token, // like this
+  },
+}).then(/* etc */)
+
+// in your gatsby app
+const { authedFetch } = useIdentityContext()
+// in an event handler
+authedFetch("/.netlify/functions/auth-hello").then(/* etc */)
+
+
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
